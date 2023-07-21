@@ -1,9 +1,9 @@
 # Change Log
 
-All notable changes to the "codegpt-assistant" extension will be documented in this file.
+## 1.1.0
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+- `Headless-ChatGPT` API Server integrated into the extension. No more need for juggling the two.
 
-## [Unreleased]
+## 1.0.0
 
-- Initial release
+- Initial release of CodeGPT Assistant. Various issues fixed and features added.

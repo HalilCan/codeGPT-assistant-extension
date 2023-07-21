@@ -2,7 +2,7 @@
 
 I don't care who Bill sends; I am not paying *double* for the same AI.
 
-![CodeGPT Assistant Refactor Screenshot](/media/screenshots/refactor.png)
+![CodeGPT Assistant Refactor Screenshot](https://github.com/HalilCan/codeGPT-assistant-extension/blob/main/media/screenshots/refactor.png?raw=true)
 
 ## What is CodeGPT Assistant?
 
@@ -10,7 +10,7 @@ CodeGPT Assistant has near-complete CoPilot X parity with some additional featur
 
 CodeGPT Assistant comes with the following actions:
 
-![CodeGPT Assistant Command Palette Screenshot](/media/screenshots/command-palette.png)
+![CodeGPT Assistant Command Palette Screenshot](https://github.com/HalilCan/codeGPT-assistant-extension/blob/main/media/screenshots/command-palette.png?raw=true)
 
 * `Chat with AI`: starts a chat window,
 * `Explain selection`,
@@ -32,7 +32,7 @@ Streaming and auto-complete are coming soon (feel free to make a PR). In the mea
 3. If this is the first time you are running the extension since starting VSCode, a browser window will pop up with the ChatGPT log-in page. Do so. *Do not close the browser* afterwards, as the browser is how the extension controls ChatGPT "remotely".
 4. You are good to go.
 
-![CodeGPT Assistant Chat Screen Screenshot](/media/screenshots/chat-screen.png)
+![CodeGPT Assistant Chat Screen Screenshot](https://github.com/HalilCan/codeGPT-assistant-extension/blob/main/media/screenshots/chat-screen.png?raw=true)
 
 ## Adding New AI Actions
 
