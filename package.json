@@ -1,6 +1,6 @@
 {
   "name": "codegpt-assistant",
-  "displayName": "CodeGPT-Assistant",
+  "displayName": "CodeGPT Assistant",
   "description": "Copilot X alternative. Uses ChatGPT.",
   "homepage": "https://github.com/HalilCan/codeGPT-assistant-extension/",
   "version": "1.1.0",
