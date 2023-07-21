@@ -36,7 +36,7 @@ Streaming and auto-complete are coming soon (feel free to make a PR). In the mea
 
 ## Adding New AI Actions
 
-https://github.com/HalilCan/codeGPT-assistant-extension/assets/3583967/36b1af53-2857-4ca6-872c-7d8978da755d
+https://github.com/HalilCan/codeGPT-assistant-extension/assets/3583967/26624769-f664-4ef7-8585-1f41b37bb599
 
 All AI actions are effectively ChatGPT prompt "recipes" that are composed of some preset text, optional context, and your input (e.g. your selected code). The extension uses these recipes to prepare its prompts. The first entry in `prompts.json` is a template that demonstrates how that works. In addition, every default AI action was refactored into this format and you can see how each works in the same file.
 
