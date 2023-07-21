@@ -1,8 +1,8 @@
 {
   "name": "codegpt-assistant",
   "displayName": "CodeGPT-Assistant",
-  "description": "I am NOT paying twice for ChatGPT and Copilot.",
-  "homepage": "https://github.com/HalilCan",
+  "description": "Copilot X alternative. Uses ChatGPT.",
+  "homepage": "https://github.com/HalilCan/codeGPT-assistant-extension/",
   "version": "1.1.0",
   "publisher": "HalilCan",
   "icon": "media/icon.png",
@@ -11,11 +11,11 @@
     "theme": "dark"
   },
   "bugs": {
-    "url": "https://github.com/HalilCan/codegpt-assistant-2/issues"
+    "url": "https://github.com/HalilCan/codeGPT-assistant-extension/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/HalilCan/codegpt-assistant-2.git"
+    "url": "https://github.com/HalilCan/codeGPT-assistant-extension/"
   },
   "engines": {
     "vscode": "^1.79.0"

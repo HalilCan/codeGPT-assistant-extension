@@ -1,12 +1,12 @@
 # Your *other* AI pair programmer
 
-I don't care who Bill sends; I am not paying *double* for the same AI.
+I don't care who Bill sends; I am not paying *double* for the same* AI.
 
 ![CodeGPT Assistant Refactor Screenshot](https://github.com/HalilCan/codeGPT-assistant-extension/blob/main/media/screenshots/refactor.png?raw=true)
 
 ## What is CodeGPT Assistant?
 
-CodeGPT Assistant has near-complete CoPilot X parity with some additional features and near-effortless extensibility. You can edit `prompts.json` to easily add more AI actions and interface elements!
+CodeGPT Assistant is your intelligent coding co-pilot that lives in the editor. It has near-complete CoPilot X parity with some additional features and near-effortless extensibility. I initially made it for myself, and still use it daily. You can edit `prompts.json` to easily add more AI actions and interface elements.
 
 CodeGPT Assistant comes with the following actions:
 
@@ -38,7 +38,7 @@ Streaming and auto-complete are coming soon (feel free to make a PR). In the mea
 
 https://github.com/HalilCan/codeGPT-assistant-extension/assets/3583967/36b1af53-2857-4ca6-872c-7d8978da755d
 
-All AI actions are effectively ChatGPT prompts that are composed of some preset text, optional context, and your input (e.g. your selected code). The first entry in `prompts.json` is a template that demonstrates how that works. In addition, every default AI action was refactored into this format and you can see how each works in the same file.
+All AI actions are effectively ChatGPT prompt "recipes" that are composed of some preset text, optional context, and your input (e.g. your selected code). The extension uses these recipes to prepare its prompts. The first entry in `prompts.json` is a template that demonstrates how that works. In addition, every default AI action was refactored into this format and you can see how each works in the same file.
 
 Here is how you add a new AI action:
 
