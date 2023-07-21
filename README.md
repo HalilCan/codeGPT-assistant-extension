@@ -8,6 +8,8 @@ I don't care who Bill sends; I am not paying *double* for the same* AI.
 
 CodeGPT Assistant is your intelligent coding co-pilot that lives in the editor. It has near-complete CoPilot X parity with some additional features and near-effortless extensibility. I initially made it for myself, and still use it daily. You can edit `prompts.json` to easily add more AI actions and interface elements.
 
+You do not need an API key. This does not use the OpenAI API.
+
 CodeGPT Assistant comes with the following actions:
 
 ![CodeGPT Assistant Command Palette Screenshot](https://github.com/HalilCan/codeGPT-assistant-extension/blob/main/media/screenshots/command-palette.png?raw=true)
