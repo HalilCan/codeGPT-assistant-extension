@@ -1,0 +1,7 @@
+node_modules
+.vscode-test/
+*.vsix
+.vscode*
+vscode
+brain.md
+todo.md

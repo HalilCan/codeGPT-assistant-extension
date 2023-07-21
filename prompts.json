@@ -1,0 +1,200 @@
+[
+    {
+        "name": "Template",
+        "command": "codegpt-assistant.templateCommand",
+        "isEnabled": false,
+        "vscodeCommandSettings": {
+            "title": "Title to appear in the command pallette and on button hover",
+            "category": "CodeGPT Assistant"
+        },
+        "hasEditorTitleButton": true,
+        "editorTitleButtonSettings": {
+            "icon": {
+                "light": "media/light/ask-ai-icon.svg",
+                "dark": "media/dark/ask-ai-icon.svg"
+            }
+        },
+        "promptSettings": {
+            "requiresEditorContext": true,
+            "editorContextSettings": {
+                "contextAnchor": "selection|cursor|none?file",
+                "contextDirection": "before|after|both",
+                "bothDirectionFiller": "\n... discussed code cut out of here ...\n",
+                "maxContextChars": 2048,
+                "getFullLines": true
+            },
+            "messagePreamble": "Please explain the following lines of code given the context below it:\n",
+            "messageContextIndicator": "\n *** The context I mentioned is below: ***\n",
+            "messageConclusion": "\n Thank you for your help.",
+            "responseWindowTitle": "The Title You Want For Your VSCODE Window/Tab"
+        }
+    },
+    {
+        "name": "Explain Selection",
+        "command": "codegpt-assistant.explainSelection",
+        "isEnabled": true,
+        "vscodeCommandSettings": {
+            "title": "Explain Selection",
+            "category": "CodeGPT Assistant"
+        },
+        "hasEditorTitleButton": false,
+        "promptSettings": {
+            "requiresEditorContext": true,
+            "editorContextSettings": {
+                "contextAnchor": "selection",
+                "contextDirection": "both",
+                "bothDirectionFiller": "\n... discussed code cut out of here ...\n",
+                "maxContextChars": 2048,
+                "getFullLines": true
+            },
+            "messagePreamble": "Please explain the following lines of code given the context below it:\n",
+            "messageContextIndicator": "\n *** The context I mentioned is below: ***\n",
+            "messageConclusion": "\n Thank you for your help.",
+            "responseWindowTitle": "AI - Selection Explanation"
+        }
+    },
+    {
+        "name": "Refactor Selection",
+        "command": "codegpt-assistant.refactorSelection",
+        "isEnabled": true,
+        "vscodeCommandSettings": {
+            "title": "Refactor Selection",
+            "category": "CodeGPT Assistant"
+        },
+        "hasEditorTitleButton": false,
+        "promptSettings": {
+            "requiresEditorContext": true,
+            "editorContextSettings": {
+                "contextAnchor": "selection",
+                "contextDirection": "both",
+                "bothDirectionFiller": "\n... discussed code cut out of here ...\n",
+                "maxContextChars": 2048,
+                "getFullLines": true
+            },
+            "messagePreamble": "Keeping an eye towards readability, simplicity, and efficiency - while maintaining functionality - Please refactor this piece of code:\n",
+            "messageContextIndicator": "\n *** The code above is from the context below: ***\n",
+            "messageConclusion": "\n Thank you for your help.",
+            "responseWindowTitle": "AI - Refactored Code"
+        }
+    },
+    {
+        "name": "Find and fix problems in selection",
+        "command": "codegpt-assistant.findProblems",
+        "isEnabled": true,
+        "vscodeCommandSettings": {
+            "title": "Find and fix problems in selection",
+            "category": "CodeGPT Assistant"
+        },
+        "hasEditorTitleButton": false,
+        "promptSettings": {
+            "requiresEditorContext": true,
+            "editorContextSettings": {
+                "contextAnchor": "selection",
+                "contextDirection": "both",
+                "bothDirectionFiller": "\n... discussed code cut out of here ...\n",
+                "maxContextChars": 2048,
+                "getFullLines": true
+            },
+            "messagePreamble": "Can you find and fix problems in this piece of code (give me the fixed version with inline comments where appropriate, please):\n",
+            "messageContextIndicator": "\n *** The code above is from the context below: ***\n",
+            "messageConclusion": "\n Thank you for your help.",
+            "responseWindowTitle": "AI - Problem Analysis"
+        }
+    },
+    {
+        "name": "Optimize code",
+        "command": "codegpt-assistant.optimizeCode",
+        "isEnabled": true,
+        "vscodeCommandSettings": {
+            "title": "Optimize code in selection",
+            "category": "CodeGPT Assistant"
+        },
+        "hasEditorTitleButton": false,
+        "promptSettings": {
+            "requiresEditorContext": true,
+            "editorContextSettings": {
+                "contextAnchor": "selection",
+                "contextDirection": "both",
+                "bothDirectionFiller": "\n... discussed code cut out of here ...\n",
+                "maxContextChars": 2048,
+                "getFullLines": true
+            },
+            "messagePreamble": "Given the context below it, can you optimize the following piece of code (give me just the optimized version, please): \n",
+            "messageContextIndicator": "\n *** The code above is from the context below: ***\n",
+            "messageConclusion": "\n Thank you for your help.",
+            "responseWindowTitle": "AI - Optimized Code"
+        }
+    },
+    {
+        "name": "Continue code from cursor",
+        "command": "codegpt-assistant.continueCode",
+        "isEnabled": true,
+        "vscodeCommandSettings": {
+            "title": "Continue code from cursor",
+            "category": "CodeGPT Assistant"
+        },
+        "hasEditorTitleButton": false,
+        "promptSettings": {
+            "requiresEditorContext": true,
+            "editorContextSettings": {
+                "contextAnchor": "cursor",
+                "contextDirection": "both",
+                "bothDirectionFiller": "\n... discussed code cut out of here ...\n",
+                "maxContextChars": 2048,
+                "getFullLines": true
+            },
+            "messagePreamble": "Given the context below it, can you continue this piece of code:\n",
+            "messageContextIndicator": "\n *** The code above is from the context below: ***\n",
+            "messageConclusion": "\n Thank you for your help.",
+            "responseWindowTitle": "AI - Continued Code"
+        }
+    },
+    {
+        "name": "Generate comments",
+        "command": "codegpt-assistant.generateComments",
+        "isEnabled": true,
+        "vscodeCommandSettings": {
+            "title": "Generate comments for selection",
+            "category": "CodeGPT Assistant"
+        },
+        "hasEditorTitleButton": false,
+        "promptSettings": {
+            "requiresEditorContext": true,
+            "editorContextSettings": {
+                "contextAnchor": "selection",
+                "contextDirection": "both",
+                "bothDirectionFiller": "\n... discussed code cut out of here ...\n",
+                "maxContextChars": 2048,
+                "getFullLines": true
+            },
+            "messagePreamble": "Can you generate comments for this piece of code given the context below it? Inline comments to describe what it does and how it works, as well as doc-style comments where appropriate. (Little prose or anything outside code, please):\n",
+            "messageContextIndicator": "\n *** The code above is from the context below: ***\n",
+            "messageConclusion": "\n Thank you for your help.",
+            "responseWindowTitle": "AI - Code Comments"
+        }
+    },
+    {
+        "name": "Generate unit tests",
+        "command": "codegpt-assistant.generateUnitTests",
+        "isEnabled": true,
+        "vscodeCommandSettings": {
+            "title": "Generate unit tests for selection",
+            "category": "CodeGPT Assistant"
+        },
+        "hasEditorTitleButton": false,
+        "promptSettings": {
+            "requiresEditorContext": true,
+            "editorContextSettings": {
+                "contextAnchor": "selection",
+                "contextDirection": "both",
+                "bothDirectionFiller": "\n... discussed code cut out of here ...\n",
+                "maxContextChars": 2048,
+                "getFullLines": true
+            },
+            "messagePreamble": "Can you generate unit tests for this piece of code given the context below it? Please explain the reasoning behind the unit tests succinctly. (Little prose or anything outside code, please):\n",
+            "messageContextIndicator": "\n *** The code above is from the context below: ***\n",
+            "messageConclusion": "\n Thank you for your help.",
+            "responseWindowTitle": "AI - Unit Tests"
+        }
+    }
+]

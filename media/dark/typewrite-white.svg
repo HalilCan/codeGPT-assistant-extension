@@ -1,0 +1,22 @@
+<svg id="visual" viewBox="75.057 120.118 353.237 237.165" width="353.237" height="237.165" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+  <defs>
+    <linearGradient id="color-0-0" gradientTransform="matrix(0.976304, -0.915296, 0.357659, 0.846302, 0.018957, 0.96706)" xlink:href="#color-0"></linearGradient>
+    <linearGradient data-bx-pinned="true" id="color-0">
+      <stop style="stop-color: rgb(187, 123, 135);" offset="0"></stop>
+      <stop offset="0.875" style="stop-color: rgb(143, 61, 69);"></stop>
+      <stop style="stop-color: rgb(94, 9, 9);" offset="1"></stop>
+    </linearGradient>
+  </defs>
+  <path d="M 291.125 224.495 L 320.663 314.338 L 247.002 314.338 L 291.125 224.495 Z" data-bx-shape="triangle 247.002 224.495 73.661 89.843 0.599 0 1@e44a6076" style="fill: rgb(255, 255, 255); visibility: hidden;"></path>
+  <path d="M 210.406 224.332 L 251.141 314.175 L 177.48 314.175 L 210.406 224.332 Z" data-bx-shape="triangle 177.48 224.332 73.661 89.843 0.447 0 1@1a2e639e" style="fill: rgb(255, 255, 255); visibility: hidden;"></path>
+  <rect x="206.056" y="217.773" width="84.262" height="96.54" style="fill: rgb(255, 255, 255); visibility: hidden;" rx="13.393" ry="13.393"></rect>
+  <ellipse style="fill-rule: nonzero; fill: rgb(255, 255, 255);" cx="189.593" cy="300.642" rx="18.136" ry="18.136"></ellipse>
+  <ellipse style="fill-rule: nonzero; fill: rgb(255, 255, 255);" cx="229.6" cy="300.6" rx="18.136" ry="18.136"></ellipse>
+  <ellipse style="fill-rule: nonzero; fill: rgb(255, 0, 0);" cx="269.6" cy="300.6" rx="18.136" ry="18.136"></ellipse>
+  <ellipse style="fill-rule: nonzero; fill: rgb(0, 255, 255);" cx="309.6" cy="300.6" rx="18.136" ry="18.136"></ellipse>
+  <ellipse style="fill-rule: nonzero; fill: rgb(0, 0, 255);" cx="209.241" cy="264.833" rx="17" ry="17"></ellipse>
+  <ellipse style="fill-rule: nonzero; fill: rgb(255, 255, 255);" cx="249.6" cy="264.8" rx="17" ry="17"></ellipse>
+  <ellipse style="fill-rule: nonzero; fill: rgb(255, 255, 255);" cx="290" cy="264.8" rx="17" ry="17"></ellipse>
+  <rect x="195.06" y="217.216" width="109.374" height="27.344" style="fill: rgb(255, 255, 255);" rx="9.487" ry="9.487"></rect>
+  <rect x="209.847" y="156.715" width="78.682" height="89.286" style="fill: rgb(255, 255, 255);" rx="9.487" ry="9.487"></rect>
+</svg>

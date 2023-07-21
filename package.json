@@ -1,0 +1,118 @@
+{
+  "name": "codegpt-assistant",
+  "displayName": "CodeGPT-Assistant",
+  "description": "I am NOT paying twice for ChatGPT and Copilot.",
+  "homepage": "https://github.com/HalilCan",
+  "version": "1.1.0",
+  "publisher": "HalilCan",
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#C80000",
+    "theme": "dark"
+  },
+  "bugs": {
+    "url": "https://github.com/HalilCan/codegpt-assistant-2/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HalilCan/codegpt-assistant-2.git"
+  },
+  "engines": {
+    "vscode": "^1.79.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Machine Learning",
+    "Education"
+  ],
+  "keywords": [
+    "Copilot",
+    "AI",
+    "Intellisense",
+    "ChatGPT",
+    "OpenAI"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "CodeGPT-Assistant",
+      "properties": {
+        "codegpt-assistant.serverPort": {
+          "type": "number",
+          "default": 3039,
+          "description": "The port to use for the server. Restart the extension afterwards if you need to change this."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "codegpt-assistant.explainSelection",
+        "title": "Explain Selection",
+        "category": "CodeGPT Assistant"
+      },
+      {
+        "command": "codegpt-assistant.refactorSelection",
+        "title": "Refactor Selection",
+        "category": "CodeGPT Assistant"
+      },
+      {
+        "command": "codegpt-assistant.findProblems",
+        "title": "Find and fix problems in selection",
+        "category": "CodeGPT Assistant"
+      },
+      {
+        "command": "codegpt-assistant.optimizeCode",
+        "title": "Optimize code in selection",
+        "category": "CodeGPT Assistant"
+      },
+      {
+        "command": "codegpt-assistant.continueCode",
+        "title": "Continue code from cursor",
+        "category": "CodeGPT Assistant"
+      },
+      {
+        "command": "codegpt-assistant.generateComments",
+        "title": "Generate comments for selection",
+        "category": "CodeGPT Assistant"
+      },
+      {
+        "command": "codegpt-assistant.generateUnitTests",
+        "title": "Generate unit tests for selection",
+        "category": "CodeGPT Assistant"
+      },
+      {
+        "command": "codegpt-assistant.chatWithAI",
+        "title": "Chat with AI",
+        "category": "CodeGPT Assistant"
+      }
+    ],
+    "menus": {
+      "editor/title": []
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js",
+    "prepackage": "node ./generate-commands.cjs"
+  },
+  "type": "commonjs",
+  "devDependencies": {
+    "eslint": "^8.41.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "cheerio": "^1.0.0-rc.12",
+    "highlight.js": "^11.8.0",
+    "marked": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "puppeteer": "^20.7.4",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  }
+}
