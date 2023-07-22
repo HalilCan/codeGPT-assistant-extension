@@ -30,9 +30,13 @@ Streaming and auto-complete are coming soon (feel free to make a PR). In the mea
 ## Usage Guide
 
 1. Install the extension.
-2. Run one of the above commands, such as `Chat with AI`. (Note: `Ctrl + Shift + p` opens up the palette where you can execute this command. This is `Command + Shift + p` on Mac.)
-3. If this is the first time you are running the extension since starting VSCode, a browser window will pop up with the ChatGPT log-in page. Do so. *Do not close the browser* afterwards, as the browser is how the extension controls ChatGPT "remotely".
-4. You are good to go.
+2. You may not have all necessary packages, and `puppeteer`'s puppet Chrome installation does not always trigger successfully. We will now fix this: 
+    1. Navigate to the extension directory. You can search for `codegpt-assistant` to find this directory on your machine. The path should be something like `... /.vscode/extensions/halilcan.codegpt-assistant-1.1.0`.
+    2. Run `npm install` to install any missing dependencies.
+    3. Run `node node_modules/puppeteer/install.js` to make sure `puppeteer`'s puppet Chrome is successfully installed. This is a ~120MB download.
+3. Run any one of the above CodeGPT Assistant commands, such as `Chat with AI`. (Note: `Ctrl + Shift + p` opens up the palette where you can execute this command. This is `Command + Shift + p` on Mac.)
+4. If this is the first time you are running the extension since starting VSCode, a browser window will pop up with the ChatGPT log-in page. Do so. *Do not close the browser* afterwards, as the browser is how the extension controls ChatGPT "remotely".
+5. You are good to go.
 
 ![CodeGPT Assistant Chat Screen Screenshot](https://github.com/HalilCan/codeGPT-assistant-extension/blob/main/media/screenshots/chat-screen.png?raw=true)
 
