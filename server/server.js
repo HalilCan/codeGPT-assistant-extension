@@ -129,7 +129,7 @@ app.post('/queryAi', async (req, res) => {
         }
         let context = req.body.context ?? "";
         const innerHtml = await browserModule.queryAi(req.body.text, context);
-        console.log(innerHtml);
+        // console.log(innerHtml);
         res.send({"text": innerHtml});
     } catch (error) {
         console.error(error);
@@ -162,5 +162,5 @@ app.listen(port, async () => {
     const response = await axios.get(`http://localhost:${port}/chatgpt`);
     
     // Do something with response...
-    console.log(response.data);
+    // console.log(response.data);
   });

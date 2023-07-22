@@ -46,7 +46,7 @@ function getContext(document, position, precedingChars, followingChars, connecto
 
     // If the selection contains all the context, log a message and return
     if (startOffset === 0 && endOffset >= fullText.length - 1) {
-        console.log("The selection contains all the context");
+        // console.log("The selection contains all the context");
         return "The selection contains all the context";
     }
 

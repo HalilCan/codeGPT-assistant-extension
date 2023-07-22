@@ -25,6 +25,8 @@ CodeGPT Assistant comes with the following actions:
 
 The extension is context-aware: It remains aware of your growing conversation, and it considers the code surrounding your selection whenever you use an `selection` or `cursor` action.
 
+Chat log too long? You can use `vscode`'s own `ctrl+f` search modal to search within your chat window.
+
 Streaming and auto-complete are coming soon (feel free to make a PR). In the meantime, you can use the `Continue code from cursor` command as a slightly less "auto" complete.
 
 ## Usage Guide

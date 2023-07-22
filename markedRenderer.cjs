@@ -8,7 +8,7 @@ const renderer = new marked.Renderer();
 // Override the default behavior for rendering <pre> tags
 // (We override the code() method, which is responsible for rendering <pre> and <code> blocks.)
 renderer.code = (code, language) => {
-  console.log(code);
+  // console.log(code);
   // Check if a language is specified
   const validLanguage = !!(language && highlight.getLanguage(language));
   
@@ -16,7 +16,7 @@ renderer.code = (code, language) => {
   const highlightedCode = validLanguage
     ? highlight.highlight(language, code).value
     : code;
-  console.log(highlightedCode);
+  // console.log(highlightedCode);
   // escape html encodings since they cause problems
   const escapedCode = highlightedCode
     .replace(/&/g, '&amp;')
@@ -47,10 +47,10 @@ const highlightFirstOptions = {
           return '`' + p1.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&') + '`';
         });
       }
-      console.log('highlighted', highlighted);
+      // console.log('highlighted', highlighted);
       return highlighted;
     } 
-    console.log('not highlighted', code);
+    // console.log('not highlighted', code);
     return code;
   }
 };

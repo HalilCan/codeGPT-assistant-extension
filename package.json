@@ -3,7 +3,7 @@
   "displayName": "CodeGPT Assistant",
   "description": "Copilot X alternative. Uses ChatGPT.",
   "homepage": "https://github.com/HalilCan/codeGPT-assistant-extension/",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "publisher": "HalilCan",
   "icon": "media/icon.png",
   "galleryBanner": {

@@ -41,13 +41,13 @@ function activate(context) {
 	const serverPath = path.join(_extensionPath, "/server/server.js");
 	serverProcess = spawn('node', [serverPath, serverPort]);
 	serverProcess.stdout.on('data', (data) => {
-	  console.log(`Server: ${data}`);
+	//   console.log(`Server: ${data}`);
 	});
 	serverProcess.stderr.on('data', (data) => {
-	  console.error(`Server Error: ${data}`);
+	//   console.error(`Server Error: ${data}`);
 	});
 	serverProcess.on('close', (code) => {
-	  console.log(`Server exited with code ${code}`);
+	//   console.log(`Server exited with code ${code}`);
 	});
 
 	// The command has been defined in the package.json file
@@ -102,7 +102,7 @@ function activate(context) {
 							// let renderContent = response.text + "<br> now for the filtered: <br>" + markdownHtml;
 							panel.webview.postMessage({ command: 'receiveMessage', text: response.text });
 						}).catch(error => {
-							console.log("communication error caught in extension: ", error);
+							console.error("communication error caught in extension: ", error);
 							vscode.window.showErrorMessage(error.message);
 						});
 						break;
@@ -115,12 +115,12 @@ function activate(context) {
 						sendRetryRequest(false, serverPort).then(response => {
 							panel.webview.postMessage({ command: 'replaceLastMessage', text: response.text });
 						}).catch(error => {
-							console.log("communication error caught in extension: ", error);
+							console.error("communication error caught in extension: ", error);
 							vscode.window.showErrorMessage(error.message);
 						});
 						break;
 					default:
-						console.log(message);
+						// console.log(message);
 				}
 			},
 			undefined,
@@ -276,7 +276,7 @@ function createCommandHandler(promptSettings) {
 
 		// Send the selected text and context to the AI model
 		sendMessagetoAI(fullQueryText, serverPort).then(response => {
-			console.log(response);
+			// console.log(response);
 			createSimpleWebview(response.text, promptSettings.responseWindowTitle);
 		}).catch(error => {
 			console.error("communication error caught in extension: ", error);

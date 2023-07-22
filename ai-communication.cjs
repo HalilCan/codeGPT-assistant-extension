@@ -33,7 +33,7 @@ async function sendMessagetoAI(message, serverPort) {
 
         // Send the request to the AI server
         const response = await axios.post(options.url, options.data, options);
-        console.log(response);
+        // console.log(response);
         statusBarItem.hide();
 
         return response.data;

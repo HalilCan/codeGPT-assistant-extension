@@ -64,7 +64,7 @@ const scrollToBottom = () => {
 // Listen for messages from the extension
 window.addEventListener('message', event => {
 	const message = event.data; 
-	console.log("message event to window", message);
+	// console.log("message event to window", message);
 	try {
 		switch (message.command) {
 			case 'receiveMessage':
@@ -340,7 +340,7 @@ function searchAndUpdate(searchText) {
 }
 
 function toggleSearchModal() {
-	console.log("toggling search");
+	// console.log("toggling search");
 	if (searchModal.style.display === "block") {
 		searchModal.style.display = "none";
 		input.focus();
@@ -482,7 +482,7 @@ chatDiv = previousState ? previousState.chatDiv : chatDiv;
 chatDiv.innerHTML = chatDiv.innerHTML; // what
 
 function saveState() {
-	console.log()
+	// console.log()
 	vscode.setState({ chatDiv });
 };`
 
@@ -516,7 +516,7 @@ function getChatHtml() {
         </body>
     </html>
     `
-	console.log(webViewHtml);
+	// console.log(webViewHtml);
 	return webViewHtml;
 }
 
