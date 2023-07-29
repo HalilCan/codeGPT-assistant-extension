@@ -2,6 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const browserModule = require('./browser');
 const bodyParser = require('body-parser');
+const fs = require('fs');
 
 const app = express();
 app.use(bodyParser.json());
@@ -12,7 +13,7 @@ app.get('/chatgpt', async (req, res) => {
         await browserModule.visitPage("https://chat.openai.com");
         res.send('Navigated to chatgpt');
     } catch (error) {
-        console.error(error);
+        console.error(error.data);
         res.status(500).send('Error navigating to chatgpt');
     }
 });
@@ -129,8 +130,9 @@ app.post('/queryAi', async (req, res) => {
         }
         let context = req.body.context ?? "";
         const innerHtml = await browserModule.queryAi(req.body.text, context);
-        // console.log(innerHtml);
         res.send({"text": innerHtml});
+        // also save cookies since we've definitely logged in.
+        await browserModule.saveCookies();
     } catch (error) {
         console.error(error);
         res.status(500).send('Error in querying AI');
@@ -158,9 +160,6 @@ const port = process.argv[2] || defaultPort;
 
 app.listen(port, async () => {
     console.log(`ChatGPT API server running on port ${port}`);
-  
     const response = await axios.get(`http://localhost:${port}/chatgpt`);
-    
-    // Do something with response...
     // console.log(response.data);
-  });
+});
