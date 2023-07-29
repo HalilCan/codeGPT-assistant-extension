@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.2
+- 1.2.0: Added cookie management. No more superfluous logins between sessions, as long as you submitted one query sometime recently.
+
 ## 1.1
 
 - 1.1.4: Modify the puppet browser to be able to interact with OpenAI's new buttons. 
