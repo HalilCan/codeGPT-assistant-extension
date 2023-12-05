@@ -7,11 +7,37 @@ puppeteer.use(StealthPlugin());
 let browser;
 let page;
 
-const _regenButtonXPathSelector = "//button[contains(., 'Regenerate') or contains(., 'Regenerate response')]";
+const _regenButtonXPathSelector = "//div[@class='text-gray-400 flex self-end lg:self-center justify-center lg:justify-start mt-0 gap-1 visible']/button[2]" // as of today (5/12/2023) only the last response has a regen button. (The third child of the above div, being also a button) And thank Todd for that; he did it again.
 const _continueButtonXPathSelector = "//button[contains(., 'Continue generating') or contains(., 'Continue')]";
-const _maxWaitCount = 100;
+const _newChatButtonXPathSelector = "(//a[@href="/" and contains(text(), chatgpt)])[2]";
+//new chat button attempts: //a[@class='group flex h-10 items-center gap-2 rounded-lg px-2 font-medium hover:bg-token-surface-primary' and contains(., Chatgpt) and .//svg]
+
+const _currentGptModeButtonSelector = "//div[@class='group flex cursor-pointer items-center gap-1 rounded-xl py-2 px-3 text-lg font-medium hover:bg-gray-50 radix-state-open:bg-gray-50 dark:hover:bg-black/10 dark:radix-state-open:bg-black/20']";
+const _gptFourChatModeSelector = "(//div[@role='menuitem'])[1]";
+const _gptThreeChatModeSelector = "(//div[@role='menuitem'])[2]";
+const _pluginsChatModeSelector = "(//div[@role='menuitem'])[3]";
+const _generalChatModeMenuButtonSelector = "//div[@role='menuitem']";
+
+const _gptSelectorButtonStub = "//div[@class='pb-0.5 last:pb-0' and ";
+const _gptSelectorButtons = "//div[@class='pb-0.5 last:pb-0']";
+const _indexedGptSelectorButtonSelectorStub = "(//div[@class='pb-0.5 last:pb-0'])[";
+
+const _oldChatButtonSelector = "//li[@class='relative']/div/a";
+const _oldChatButtonSelectorTextStub = "//li[@class='relative']/div/a[contains(.,"; // add "STRING)]"
+// working completed stub: //li[@class='relative']/div/a[contains(.,xpath)] no quotes at the end, strangely enough.
+
+const _firstChatButtonSelector = "(//li[@class='relative']/div/a)[1]";
+const _lastChatButtonSelector = "(//li[@class='relative']/div/a)[last()]" // this is for scrolling down so that chatgpt gives us older chats as well.
+
+const _chatHistoryContainerSelector = "//nav[@aria-label='Chat history']"
+
+// const _gptFourButtonXPathSelector = "//div[contains(., 'GPT-4')][contains(@class, 'group/button')]";
+const _gptFourButtonXPathSelector = "//button[contains(., 'GPT-4')]";
+const _gptThreeButtonXPathSelector = "//button[contains(., 'GPT-3.5')]";
+const _maxWaitCount = 400;
 const _generationWaitStepLength = 500;
 const _generationInitialWaitLength = 500;
+const _olderChatLoadTime = _generationInitialWaitLength * 6;
 
 async function startBrowser(){
     browser = await puppeteer.launch({
@@ -49,10 +75,12 @@ async function closeBrowser(){
     await browser.close();
 }
 
-async function selectElem(selector) {
+async function selectElem(selector, click=true) {
     const element = await page.waitForSelector(selector);
     //
-    await element.click();
+    if (click) {
+        await element.click();
+    }
     return element;
 }
 
@@ -137,6 +165,64 @@ async function readLastResponse() {
     return innerHTML;
 }
 
+async function goToChat(chatName) {
+    const chatSelector = _oldChatButtonSelectorTextStub + "\"" +  chatName + "\")]";
+    clickResponse = clickButton(chatSelector);
+    if (clickResponse === -1) {
+        console.error(`Error: cannot click chat button for ${chatName}`);
+        return clickResponse;
+    }
+    return 0;
+}
+
+async function getChatList () {
+    const chatButtons = await page.$x("//li[@class='relative']/div/a");
+    let list = [];
+    for (const button of chatButtons) {
+        const text = await page.evaluate(element => element.textContent, button);
+        list.push(text.trim());
+    }
+    return list;
+}
+
+async function loadOlderChats(loadAllChats=false) {
+    let chatCount = 0;
+    let chatButtons = await page.$x("//li[@class='relative']/div/a");
+    if (chatButtons.length < 3) {
+        return;
+    }
+    
+    if (loadAllChats) {
+        let oldChatCount = chatCount;
+        chatCount = chatButtons.length;
+        while (oldChatCount != chatCount) {
+            const secondLastElement = chatButtons[chatButtons.length - 2];
+            await page.evaluate(element => {
+                element.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }, secondLastElement);
+
+            await timeout(_olderChatLoadTime);
+            chatButtons = await page.$x("//li[@class='relative']/div/a");     
+            oldChatCount = chatCount;
+            chatCount = chatButtons.length;
+        }
+    } else {
+        const secondLastElement = chatButtons[chatButtons.length - 2];
+        await page.evaluate(element => {
+            element.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }, secondLastElement);
+        await timeout(_generationInitialWaitLength / 2);
+    }
+}
+
+async function waitForNewChat() {
+    let button = await page.$x(_currentGptModeButtonSelector);
+    while (!button || button.length == 0) {
+        await timeout(_generationInitialWaitLength);
+        button = await page.$x(_currentGptModeButtonSelector);
+    }
+}
+
 async function waitForGenerationToComplete() {
     // console.log("enter generation waiter");
     let button;
@@ -170,6 +256,79 @@ async function waitForGenerationToComplete() {
             }
         }
         waitCount++;
+    }
+}
+
+async function getGptList() {
+    let gptList = await page.$x(_gptSelectorButtons);
+    let list = [];
+
+    list.push("GPT-4");
+    list.push("GPT-3.5");
+    for (const gpt of gptList) {
+        const text = await page.evaluate(element => element.textContent, gpt);
+        if (text == "ChatGPTChatGPT") {
+            continue;
+        } else {
+            list.push(text.trim());
+        }
+    }
+
+    return list;
+}
+
+async function newChat(modelName) {
+    // backwards compatibility:
+    // console.log(`new chat model name: ${modelName}`);
+    if (modelName == "4" || modelName == 4) {
+        modelName = "GPT-4";
+    }
+    if (modelName == "3" || modelName == 3) {
+        modelName = "GPT-3.5";
+    }
+    // console.log(`new chat modified model name: ${modelName}`);
+    if (modelName == "GPT-4" || modelName == "GPT-3.5") {
+        // go through the chatgpt button -> chatgpt selector -> appropriate gpt model
+        // console.log(`new chat gpt 4 or 3.5 detected`);
+        let clickResponse = await clickButton(_indexedGptSelectorButtonSelectorStub + "2]");
+        if (clickResponse === -1) {
+            console.error("Error: cannot click top chatgpt button for new chat");
+            return clickResponse;
+        }
+        // console.log(`in new chatgpt`);
+        await waitForNewChat();
+        clickResponse = clickButton(_currentGptModeButtonSelector);
+        if (clickResponse === -1) {
+            console.error("Error: cannot click gpt selector dropdown menu");
+            return clickResponse;
+        }
+        // console.log(`dropdown dropped`);
+        await timeout(500);
+        if (modelName == "GPT-4") {
+            clickResponse = clickButton(_gptFourChatModeSelector);
+            if (clickResponse === -1) {
+                console.error("Error: cannot click gpt-4 button in the dropdown gpt selector menu");
+                return clickResponse;
+            }
+        } else {
+            clickResponse = clickButton(_gptThreeChatModeSelector);
+            if (clickResponse === -1) {
+                console.error("Error: cannot click gpt-4 button in the dropdown gpt selector menu");
+                return clickResponse;
+            }
+        }
+        // console.log(`selected from dropdown`);
+    } else {
+        // e.g. //div[@class='pb-0.5 last:pb-0' and @data-projection-id!='98' and contains(., "Hot Mods")] works
+        const gptSelector = _gptSelectorButtonStub + `contains(., "${modelName}")]`;
+        console.log(gptSelector);
+        const clickResponse = await clickButton(gptSelector);
+        if (clickResponse === -1) {
+            console.error("Error: cannot click gpt button for new chat");
+            return clickResponse;
+        }
+        await waitForNewChat();
+        return 0;
     }
 }
 
@@ -226,4 +385,4 @@ async function saveCookies() {
 
 module.exports = { startBrowser, visitPage, closeBrowser, type, selectElem, 
     selectElemWithIndex, writeInTextArea, getInnerHtmlOfLastElem,
-    queryAi, retry, saveCookies };
+    queryAi, retry, saveCookies, newChat, loadOlderChats, getGptList, getChatList, goToChat};

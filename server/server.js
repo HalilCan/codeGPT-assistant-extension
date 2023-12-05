@@ -10,10 +10,10 @@ app.use(bodyParser.json());
 app.get('/chatgpt', async (req, res) => {
     try {
         await browserModule.startBrowser();
-        await browserModule.visitPage("https://chat.openai.com");
+        await browserModule.visitPage("https://chat.openai.com/");
         res.send('Navigated to chatgpt');
     } catch (error) {
-        console.error(error.data);
+        console.error(error.message);
         res.status(500).send('Error navigating to chatgpt');
     }
 });
@@ -51,6 +51,41 @@ app.get('/close', async (req, res) => {
         res.status(500).send('Error closing browser');
     }
 });
+
+app.get('/currentChatList', async (req, res) => {
+    try {
+        const list = await browserModule.getChatList();
+        res.send(list);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error getting the chat list');
+    }
+});
+
+app.get('/currentGptList', async (req, res) => {
+    try {
+        const list = await browserModule.getGptList();
+        res.send(list);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error getting the gpt list');
+    }
+});
+
+app.post('/loadMoreChats', async (req, res) => {
+    try {
+        if (!req.body.isAllChats) {
+            await browserModule.loadOlderChats(false);
+            res.send(`One page of older chats loaded`);
+        } else {
+            await browserModule.loadOlderChats(true);
+            res.send(`All older chats loaded`);
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error loading older chats');
+    }
+})
 
 app.post('/type', async (req, res) => {
     try {
@@ -150,6 +185,49 @@ app.get('/retry', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).send('Error in retrying the last query on AI.');
+    }
+})
+
+app.post('/selectChat', async (req, res) => {
+    try {
+        if (!req.body.chatName) {
+            res.status(500).send(`Please include chatName in your request body`);
+            return;
+        }
+        let chatName = req.body.chatName;
+        // console.log(`model: ${model}`);
+        const actionResponse = await browserModule.goToChat(chatName);
+        if (actionResponse === -1) {
+            console.error(`Error in selecting chat: ${chatName}`);
+            res.status(500).send(`Error in selecting chat: ${chatName}`);            
+        } else {
+            res.send('Chat selected.');
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(`Error in selecting existing chat.`);
+    }
+})
+
+app.post('/newChat', async (req, res) => {
+    try {
+        let model;
+        if (!req.body.model) {
+            model = 3;
+        } else {
+            model = req.body.model;
+        }
+        // console.log(`model: ${model}`);
+        const actionResponse = await browserModule.newChat(model);
+        if (actionResponse === -1) {
+            console.error('Error in starting new chat.');
+            res.status(500).send('Error in starting new chat.');            
+        } else {
+            res.send('New chat started');
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error in starting new chat.');
     }
 })
 
