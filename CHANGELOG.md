@@ -1,5 +1,8 @@
 # Change Log
 
+## 2.0
+- 2.0.0: The Big Fix: Openai changed ChatGPT's interface sufficiently to break key functionality. That has been fixed. More features added to the backend API emulator, which are coming to the extension presently.
+
 ## 1.2
 - 1.2.0: Added cookie management. No more superfluous logins between sessions, as long as you submitted one query sometime recently.
 

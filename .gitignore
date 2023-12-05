@@ -4,3 +4,4 @@ node_modules
 vscode
 brain.md
 todo.md
+.env
