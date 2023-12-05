@@ -1,6 +1,7 @@
 # Change Log
 
 ## 2.0
+- 2.0.1: Various versioning, readme, and packaging fixes.
 - 2.0.0: The Big Fix: Openai changed ChatGPT's interface sufficiently to break key functionality. That has been fixed. More features added to the backend API emulator, which are coming to the extension presently.
 
 ## 1.2
